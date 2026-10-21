@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          #uri: file:D:/TransporteMicroservicios/Version2/Tickets/config-data
+          uri: ${spring.cloud.config.server.git.uri} #uri: https://github.com/AngelGarMar/tickets-config-data.git se pasa el docker-compose.yml
+          username: ${spring.cloud.config.server.git.username} #username: AngelGarMar se pasa el docker-compose.yml
+          password: ${spring.cloud.config.server.git.password} #password: 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 se pasa el docker-compose.yml
+          force-pull: true
+          clone-on-start: ${spring.cloud.config.server.git.clone-on-start} #clone-on-start: true se pasa el docker-compose.yml
+          default-label: ${spring.cloud.config.server.git.default-label} #default-label: main se pasa el docker-compose.yml
+server:
+  port: 8888
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health"
